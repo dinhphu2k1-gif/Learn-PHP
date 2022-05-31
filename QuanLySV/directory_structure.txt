@@ -1,0 +1,9 @@
+Trong mô hình này cấp ngoài cùng là folder admin và libs:
+
+admin: là folder chứa source của admin
+libs: là folder chứa các thư viện xử lý cho ứng dụng
+Trong folder admin ta lại chia ra làm ba folder con:
+
+widgets: chứa các file như header.php, footer.php của layout
+database: chứa các file xử lý dữ liệu. Như trong hình mình có file user.php là dùng chứa các hàm xử lý database bảng tb_user.
+modules: chứa các module con. Hiện tại mình có module common và module users

@@ -1,5 +1,4 @@
 <?php
-if (!defined('IN_SITE')) die ('The request not found');
 // Biến lưu trữ kết nối
 $conn = null;
 
@@ -10,7 +9,7 @@ function db_connect()
     if (!$conn) {
         $conn = mysqli_connect('localhost', 'root', '12012001', 'web-technology')
         or die ('Không thể kết nối CSDL');
-        mysqli_set_charset($conn, 'UTF-8');
+//        mysqli_set_charset($conn, 'UTF-8');
     }
 }
 
@@ -55,4 +54,28 @@ function db_execute($sql)
     db_connect();
     global $conn;
     return mysqli_query($conn, $sql);
+}
+
+// Hàm insert dữ liệu vào table
+function db_insert($table, $data = array())
+{
+    // Hai biến danh sách fields và values
+    $fields = '';
+    $values = '';
+
+    // Lặp mảng dữ liệu để nối chuỗi
+    foreach ($data as $field => $value){
+        $fields .= $field .',';
+        $values .= "'".addslashes($value)."',";
+    }
+
+    // Xóa ký từ , ở cuối chuỗi
+    $fields = trim($fields, ',');
+    $values = trim($values, ',');
+
+    // Tạo câu SQL
+    $sql = "INSERT INTO {$table}($fields) VALUES ({$values})";
+
+    // Thực hiện INSERT
+    return db_execute($sql);
 }

@@ -37,8 +37,8 @@ if (is_submit('login'))
             $error['username'] = 'Tên đăng nhập không đúng';
         }
         // nếu có kết quả nhưng sai mật khẩu
-        else if ($user['password'] != md5($password)){
-            $error['password'] = 'Mật khẩu bạn nhập không đúng';
+        else if ($user['password'] != $password){
+            $error['password'] = 'Mật khẩu bạn nhập không đúng'. $password;
         }
 
         // nếu mọi thứ ok thì tức là đăng nhập thành công
